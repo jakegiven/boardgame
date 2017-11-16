@@ -1,6 +1,7 @@
 package miniGames;
 
 import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,25 +17,27 @@ public class IntroMiniGameScreen extends IntroGUI{
 		buildGUI();	
 		setVisible(true);
 	}
+	
 	protected void buildGUI() {
 		next = new JButton("Next");
 		
 		next.addActionListener(new JButtonListener());
 		GridBagConstraints constraint = new GridBagConstraints();
-		constraint.fill = (GridBagConstraints.HORIZONTAL);
+		constraint.ipadx = 300 - (int)Title.getSize().getWidth();
+		//constraint.anchor = (GridBagConstraints.CENTER);
 		constraint.gridx = 0;
 		constraint.gridy = 0;
 		
 		Inputs.add(Title, constraint);
-		constraint.ipadx = 600;
-		constraint.ipady = 400;
+		constraint.ipadx = 600 - (int)Rules.getSize().getWidth();
+		constraint.ipady = 300 - (int)Rules.getSize().getHeight();
 		constraint.gridy = 1;
 		Inputs.add(Rules, constraint);
 
-		constraint.fill = GridBagConstraints.CENTER;
+		constraint.insets = new Insets(0, -300, 0, 0);
 		constraint.gridy = 2;
-		constraint.ipady = 1;
-		constraint.ipadx = 1;
+		constraint.ipady = 0;
+		constraint.ipadx = 0;
 		Inputs.add(next, constraint);
 		
 		add(Inputs);

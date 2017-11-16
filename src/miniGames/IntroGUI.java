@@ -22,15 +22,13 @@ public abstract class IntroGUI extends JFrame{
 		Title = new JLabel();
 		Rules = new JTextArea();
 		
-		Title.setText(TitleContent);
-		Title.setHorizontalAlignment(JLabel.CENTER);
-		
+		Title.setText(TitleContent);		
 		
 		Rules.setText(RulesContent);
 		Rules.setOpaque(false);
 		Rules.setFont(Title.getFont());
 		Rules.setEditable(false);
-		
+		this.setResizable(false);
 	}
 
 	protected abstract void buildGUI();
