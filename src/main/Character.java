@@ -20,11 +20,7 @@ public abstract class Character {
 		compareator = -1;
 		characterIcon =  new ImageIcon(this.getClass().getResource(ALL_FILENAME));
 	}
-	
-	//which character beats which character etc..
-	//returns 1 if current player beats the passed in player
-	//returns 2 if passed in player beats the current player
-	//returns -1 for a tie
+
 	public int CharacterCompare(Player Other) {
 		return 0;
 		
