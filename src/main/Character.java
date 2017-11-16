@@ -1,8 +1,6 @@
 package main;
-import java.awt.*;
-import java.awt.event.*;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
 // Rock, paper, scissor parent class
 public abstract class Character {
