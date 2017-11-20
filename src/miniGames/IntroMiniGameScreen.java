@@ -51,6 +51,7 @@ public class IntroMiniGameScreen extends IntroGUI{
 		}
 
 		private void handlenext() {
+			play = true;
 			
 			setVisible(false);
 			dispose();
