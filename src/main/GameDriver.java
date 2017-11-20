@@ -9,6 +9,7 @@ public class GameDriver {
 	
 	public static void main(String[] args) {
 		BoardGame mainGame = new BoardGame();
+
 		/*ClickerGame click = new ClickerGame("Click game");
 		while(!click.Finished()) {
 			try {
