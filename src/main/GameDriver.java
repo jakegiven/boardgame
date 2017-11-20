@@ -8,9 +8,8 @@ public class GameDriver {
 
 	
 	public static void main(String[] args) {
-		//clicker
 		BoardGame mainGame = new BoardGame();
-		ClickerGame click = new ClickerGame("Click game");
+		/*ClickerGame click = new ClickerGame("Click game");
 		while(!click.Finished()) {
 			try {
 				Thread.sleep(1000);
@@ -29,7 +28,9 @@ public class GameDriver {
         //rps
 		IntroMiniGameScreen miniGame = new IntroMiniGameScreen("Let's Play Rock, Paper, Scissors!", "Rules:");
 		IntroGUI introScreen = new RPSCharacterScreen("Let's Play Rock, Paper, Scissors!", "Rules:");
-		
+		*/
+
+		RPS RockPaperScissors = new RPS();
 		
 	}
 }

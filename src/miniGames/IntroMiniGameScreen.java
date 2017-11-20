@@ -24,7 +24,6 @@ public class IntroMiniGameScreen extends IntroGUI{
 		next.addActionListener(new JButtonListener());
 		GridBagConstraints constraint = new GridBagConstraints();
 		constraint.ipadx = 300 - (int)Title.getSize().getWidth();
-		//constraint.anchor = (GridBagConstraints.CENTER);
 		constraint.gridx = 0;
 		constraint.gridy = 0;
 		
