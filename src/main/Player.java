@@ -36,7 +36,7 @@ public class Player {
 	
 	public void setScore(int score) {this.Score = score;}
 	
-	public void AddToScore(int num) {Score = Score + num;}
+	public void addToScore(int num) {Score = Score + num;}
 	
 	public void subtractFromScore(int num) {Score = Score - num;}
 
