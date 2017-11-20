@@ -17,7 +17,7 @@ public class Tile {
 	
 	public void useType(Player player) {
 		if(Type == 1) { //addTile
-			player.addToScore(ThreadLocalRandom.current().nextInt(10, 25 + 1)); //adds 15 points to playerScore
+			player.AddToScore(ThreadLocalRandom.current().nextInt(10, 25 + 1)); //adds 15 points to playerScore
 		}
 		else if(Type == 2) {//subtractTile
 			player.subtractFromScore(ThreadLocalRandom.current().nextInt(10, 25 + 1));
@@ -26,8 +26,8 @@ public class Tile {
 			RPS Roc_Pap_Sciss = new RPS();
 		}
 		else if(Type == 4) {//Clicker Game
-			ClickerGame Clicks = new ClickerGame(); 
-			player.AddToScore(Clicks.getPoints());
+			ClickerGame Clicks = new ClickerGame("The clicker game"); 
+			player.AddToScore(Clicks.GetPoints());
 		}
 		else if(Type == 5) {
 			SimonSays Simon = new SimonSays();

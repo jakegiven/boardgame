@@ -2,8 +2,12 @@ package main;
 
 import java.util.ArrayList;
 
+import miniGames.IntroGUI;
 
-public class Game {
+
+public abstract class Game {
+	
+	private IntroGUI introScreen;
 	private ArrayList<Player> PlayerList;
 
 	public ArrayList<Player> getPlayerList() {
@@ -13,4 +17,8 @@ public class Game {
 	public void setPlayerList(ArrayList<Player> playerList) {
 		PlayerList = playerList;
 	}
+	public Game() {
+		
+	}
+	
 }
