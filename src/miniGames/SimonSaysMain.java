@@ -8,7 +8,7 @@ import java.io.PrintStream;//FIXME
 
 import javax.swing.*;
 
-public class boredGameGUI extends JFrame
+public class SimonSaysMain extends JFrame
 {
 	private JMenuBar menuBar;	//the horizontal container
 	private JMenu gameMenu;		//JMenu objects are added to JMenuBar objects as the "tabs"
@@ -16,8 +16,15 @@ public class boredGameGUI extends JFrame
 	private JMenuItem Exit; 
 
 	private JMenuItem runGame;
+	private JFrame intro;
+	private int score;
+	private boolean finished;
 
-	public boredGameGUI(String string) {
+
+	public SimonSaysMain(String string) {
+		intro = new IntroMiniGameScreen("Simon says", "rules");
+		intro.setAlwaysOnTop(true);
+
 
 		
 		setSize(200, 100);
@@ -29,6 +36,10 @@ public class boredGameGUI extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		buildGUI();	
 		setVisible(true);
+	}
+	
+	public int getScore() {
+		return score;
 	}
 	
 	
@@ -99,6 +110,7 @@ public class boredGameGUI extends JFrame
 					//FIXME compare Input to Answers
 					if(Simon.compareAnswers(Input.getText()+" ") == true) {
 						JOptionPane.showMessageDialog(null, "you win! \n" + Simon.getPoints() + " points awarded");
+						score = Simon.getPoints();
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "you lose!");
@@ -109,36 +121,23 @@ public class boredGameGUI extends JFrame
 				}
 			} 
 			else {
-			}			
+			}		
+			
 
 		}
 		
 		private void Exit() //EXIT
 		{
+			finished = true;
 			setVisible(false);
+			dispose();
 		}
 
-		private void AddCourse()
-		{
-			int index1 = -1;
-			int index2 = -1;
-			int index3 = -1;			
-			JTextField name = new JTextField();
-			JTextField dept = new JTextField();
-			JTextField course = new JTextField();
-			Object[] message = {
-			    "Student Name:", name,
-			    "Department:", dept,
-			    "Course #:", course
-			};
 
-			int option = JOptionPane.showConfirmDialog(null, message, "Add Course", JOptionPane.OK_CANCEL_OPTION);
-			if (option == JOptionPane.OK_OPTION) {
-			} 
-			else {
-			}
-
-		}
+		
+	}
+	public boolean Finished() {
+		return finished;
 	}
 }
 

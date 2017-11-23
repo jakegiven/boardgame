@@ -1,14 +1,39 @@
 package main;
 
+import java.awt.Rectangle;
 import java.util.concurrent.ThreadLocalRandom;
+
+import javax.swing.JLabel;
 
 import miniGames.*;
 
 public class Tile {
 	private int Type;
+	private JLabel square;
+	static int nextGameType = 1;
 	
-	public Tile() {
-		setType(-100);
+	public Tile(JLabel square,int type) {
+		this.square = square;
+		if(type == 0) {
+			Type = 1;
+		}
+		else if(type == 1) {
+			Type = 2;
+		}
+		else if(type == 2) {
+			Type = nextGameType + 3;
+			nextGameType = (nextGameType + 1 )% 3;
+		}
+		else if(type == 7) {
+			Type = 25;
+		}
+		else {
+			System.out.println("Something went wrong when creating the tile");
+		}
+		
+	}
+	public Rectangle getLocation() {
+		return square.getBounds();
 	}
 
 	public int getType() {	return Type;}
@@ -24,17 +49,49 @@ public class Tile {
 		}
 		else if(Type == 3) {//Rock, Paper, Scissors minigame
 			RPS Roc_Pap_Sciss = new RPS();
+			while(Roc_Pap_Sciss.checkGame() == 0) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(Roc_Pap_Sciss.getWinner() == 2) {
+				player.addToScore(Roc_Pap_Sciss.getScore());
+			}
+			
 		}
-		else if(Type == 4) {//Clicker Game
-			ClickerGame Clicks = new ClickerGame("Click game"); 
-			player.addToScore(Clicks.GetPoints());
+		else if(Type == 4) {//Clicker GameFIXME
+//			ClickerGame Clicks = new ClickerGame("Click game"); 
+//			while(!Clicks.Finished()) {
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//			player.addToScore(Clicks.GetPoints());
 		}
 		else if(Type == 5) {
-			SimonSays Simon = new SimonSays();
-			player.addToScore(Simon.getPoints());
+			SimonSaysMain Simon = new SimonSaysMain("Simon says");
+			while(!Simon.Finished()) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			player.addToScore(Simon.getScore());
 		}
 		else if(Type == -100) {
 			System.out.println("The Type of this tile wasn't initialized properly and is still" + Type);
+		}
+		else if(Type == 25) {
+			System.out.println("You passed the beginning");
+			player.addToScore(20);
 		}
 		else {
 			System.out.println(Type + "isn't a valid type number and couldn't be used");

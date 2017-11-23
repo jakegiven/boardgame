@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -16,12 +17,32 @@ public class Player {
 	private String Name;
 	private ImageIcon Icon;
 	private int Location;
+	private JLabel playerIcon;
+	private int offset;
+	private JLabel playerScore;
+	
 	
 	public Player() {
 		Score = 0;
 		Name = "None";
 		Location = 0;
 		Icon = null;
+		offset = 0;
+	}
+	public void updateScore() {
+		playerScore.setText("Score:"+Integer.toString(Score));
+	}
+	public void addIconLabel(JLabel j) {
+		playerIcon = j;
+	}
+	public void addScoreLabel(JLabel j) {
+		playerScore = j;
+	}
+	public JLabel getIconLabel() {
+		return playerIcon;
+	}
+	public int getOffset() {
+		return offset;
 	}
 	
 	public void setName(String name) {this.Name = name;}
@@ -44,28 +65,35 @@ public class Player {
 	
 	public void setLocation(int location) {this.Location = location;}
 	
-	public void rollDice() {
-		int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+	public int rollDice() {
+		//int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+		int roll = 1;
 		Location = Location + roll;
-		final JDialog Rolled = new JDialog(new JFrame(), Name + " Rolled");
-		JPanel Inputs = new JPanel();
-		Rolled.setSize(150, 125);
-		
-		JButton ok = new JButton("OK");
-		ok.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Rolled.setVisible(false);
-				Rolled.dispose();
-			}
-		});
-		JTextArea Text = new JTextArea("You rolled a " + roll);
-		Inputs.add(Text);
-		Inputs.add(ok);
-		Rolled.add(Inputs);
-		
-		Rolled.setVisible(true);
-		
-		Rolled.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//		final JDialog Rolled = new JDialog(new JFrame(), Name + " Rolled");
+//		JPanel Inputs = new JPanel();
+//		Rolled.setSize(150, 125);
+//		
+//		JButton ok = new JButton("OK");
+//		ok.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				Rolled.setVisible(false);
+//				Rolled.dispose();
+//			}
+//		});
+//		JTextArea Text = new JTextArea("You rolled a " + roll);
+//		Inputs.add(Text);
+//		Inputs.add(ok);
+//		Rolled.add(Inputs);
+//		
+//		Rolled.setVisible(true);
+//		
+//		Rolled.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		return roll;
+	}
+
+	public void setOffset(int i) {
+		 offset = i;
+		// TODO Auto-generated method stub
 		
 	}
 }

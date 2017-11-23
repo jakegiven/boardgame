@@ -1,7 +1,7 @@
 package main;
 
 import miniGames.ClickerGame;
-import miniGames.boredGameGUI;
+import miniGames.SimonSaysMain;
 import miniGames.*;
 
 public class GameDriver {
@@ -27,11 +27,11 @@ public class GameDriver {
         newGUI = new boredGameGUI("BGGUI");	
         
         //rps
-		IntroMiniGameScreen miniGame = new IntroMiniGameScreen("Let's Play Rock, Paper, Scissors!", "Rules:");
-		IntroGUI introScreen = new RPSCharacterScreen("Let's Play Rock, Paper, Scissors!", "Rules:");
-		*/
+//		IntroMiniGameScreen miniGame = new IntroMiniGameScreen("Let's Play Rock, Paper, Scissors!", "Rules:");
+//		IntroGUI introScreen = new RPSCharacterScreen("Let's Play Rock, Paper, Scissors!", "Rules:");
+//		
 
-		RPS RockPaperScissors = new RPS();
+		RPS RockPaperScissors = new RPS();*/
 		
 	}
 }

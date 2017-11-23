@@ -13,15 +13,18 @@ public class RPS extends Game{
 	private RPSCharacterScreen chosing;
 	private int endGame;
 	private int gamesPlayed;
-	private double score; 
+	private int score; 
 	private int winner;
+	private int realScore;
 	
 	public RPS() {
 		intro = new IntroMiniGameScreen("Let's Play Rock, Paper, Scissors!!", "\r\n" + "Rules: The two players each chose a object: a rock, a sheet of paper, or a pair of scissors.\r\n\t" +  
 				"The winner of that round depends on the items chosen." +"\r\n\t" +  "If the same item is chosen, it's a tie." + "\r\n\t" + "Rock beats scissors, because a rock can smash scissors."+"\r\n\t"+ "Scissors beats paper, because scissors can cut paper." + "\r\n\t" + "Paper beats rock, because a sheet of paper can cover a rock." + "\r\n\t" + "Play continues until one player wins twice.");
+		intro.setAlwaysOnTop(true);
 		endGame = 0;
 		gamesPlayed = 0;
 		score = 0;
+		realScore = 20;
 		players = new ArrayList<Player>();
 		Player comp = new Player();
 		comp.setName("Computer");
@@ -46,7 +49,7 @@ public class RPS extends Game{
 		System.out.println("Player "+ winner + " won");
 	}
 
-	private int checkGame() {
+	public int checkGame() {
 		
 		if(gamesPlayed == 3) {
 			if(score == 5) {
@@ -73,7 +76,7 @@ public class RPS extends Game{
 			gamesPlayed--;
 			System.out.println("Tied this round");
 			return;
-		}
+		}//paper == 2 ,scissors == 1, rock == 3
 		else if(player1_character == 3 &  player2_character == 1) {
 			System.out.println("Player 1 wins this round");
 			score = score + 1;
@@ -134,5 +137,10 @@ public class RPS extends Game{
 
 	public void setWinner(int winner) {
 		this.winner = winner;
+	}
+
+	public int getScore() {
+		// TODO Auto-generated method stub
+		return realScore;
 	}
 }

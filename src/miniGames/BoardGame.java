@@ -2,9 +2,13 @@ package miniGames;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -22,9 +26,21 @@ public class BoardGame extends Game {
 	JLabel player2;
 	JLabel background;
 	ImageIcon backgroundIcon;
+	Player currentPlayer;
+	boolean rolled;
+	
+	
+	
 	public static final String BOARD_FILENAME = "Board.jpg";
-	public static final String FIRE_FILENAME = "Paper.jpg";
+	public static final String FIRE_FILENAME = "fire.png";
 	public static final String WATER_FILENAME = "Water.jpg";
+	public static final String PLUS_FILENAME = "plussquare.jpg";
+	public static final String MINUS_FILENAME = "minussquare.jpg";
+	public static final String RAINBOW_FILENAME = "rainbowsquare.jpg";
+	private static final String FINISH_FILENAME = "finish.jpg";
+	
+	private String[] Squares = {PLUS_FILENAME,MINUS_FILENAME,RAINBOW_FILENAME};
+	//public static final ArrayList<String> Squares = [PLUS_FILENAME, MINUS_FILENAME, RAINBOW_FILENAME];
 	
 	
 	public BoardGame() {
@@ -56,23 +72,23 @@ public class BoardGame extends Game {
 		player2.setName("Sarah");
 		player2.setScore(0);
 		player2.setIcon(null);
+		player1.setOffset(30);
 		PlayerList.add(player1);
 		PlayerList.add(player2);
 		CreateBoard();
 		while(play) {
 			for(Player P:PlayerList) {
-				PlayTurn(P);
+				currentPlayer = P;
+				PlayTurn(currentPlayer);
 			}
-			
 		}
-		
-		
 		return 0;
 		
 	}
-	public void updateLocations() {
-		for(Player P:PlayerList) {
-		}
+	public void updateLocation(Player P) {
+		int temp = P.getLocation()%Tiles.size();
+		Rectangle temp2 = Tiles.get(temp).getLocation();
+		P.getIconLabel().setBounds((int) temp2.getX()+P.getOffset(), (int) temp2.getY(), 20, 20);
 	}
 
 	public int getTurns() {return Turns;}
@@ -90,26 +106,123 @@ public class BoardGame extends Game {
 	}
 	
 	public void PlayTurn(Player player) {
-		player.rollDice();
-		player.setLocation(player.getLocation() % Tiles.size());
+		while(!rolled) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		rolled = false;
+		updateLocation(currentPlayer);
+		
 		Tiles.get(player.getLocation()).useType(player);
+		player.updateScore();
+		
 		
 	}
 	public void CreateBoard() {
-		gameBoard = new JFrame("Bored Game");
-		gameBoard.setPreferredSize(new Dimension(300,300));
+		int offset = 50;
+		gameBoard = new JFrame("Bored game");
+		gameBoard.setPreferredSize(new Dimension(450,450));
 		JLayeredPane layeredPane = new JLayeredPane();
+		backgroundIcon = new ImageIcon(BOARD_FILENAME);
+		
+		PlayerList.get(0).setIcon(new ImageIcon(FIRE_FILENAME));
+		PlayerList.get(1).setIcon(new ImageIcon(WATER_FILENAME));
 		player1 = new JLabel(PlayerList.get(0).getIcon());
 		player2 = new JLabel(PlayerList.get(1).getIcon());
-		player1.setLocation(200, 200);
-		player2.setLocation(250,250);
-		background = new JLabel("Game Board");
-		background.setOpaque(true);
+		PlayerList.get(0).addIconLabel(player1);
+		PlayerList.get(1).addIconLabel(player2);
+		player1.setBounds(40, 50, 20, 20);
+		player1.setOpaque(true);
+		player2.setBounds(40, 80	, 20	, 20);
+		player2.setOpaque(true);
+		layeredPane.add(player1, new Integer(3));
+		layeredPane.add(player2, new Integer(3));
+		
+		background = new JLabel();
+		background.setOpaque(false);
 		background.setIcon(backgroundIcon);
 		background.setForeground(Color.red);
 		background.setHorizontalAlignment(JLabel.CENTER);
 		background.setVerticalAlignment(JLabel.TOP);
-		gameBoard.add(background);
+		layeredPane.add(background, 0);
+		background.setBounds(0, 0, 450, 450);
+		
+		JLabel rollLabel = new JLabel();
+		rollLabel.setBounds(180,200,100,100);
+		rollLabel.setText("You rolled a "+6);
+		layeredPane.add(rollLabel, new Integer(3));
+		rollLabel.setVisible(false);
+		
+		JButton Roll = new JButton("Roll");
+		Roll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				rollLabel.setText("You rolled a " + currentPlayer.rollDice() );
+				rollLabel.setVisible(true);
+				rolled = true;
+			}
+		});
+
+		
+		Roll.setSize(40,20);
+		Roll.setOpaque(true);
+		Roll.setBounds(206,185,40,20);
+		layeredPane.add(Roll, new Integer(1));
+		
+		for(int i = 0; i < 8; i ++) {
+			JLabel square = new JLabel(new ImageIcon(Squares[i%3]));
+			square.setOpaque(true);
+			square.setBounds(i*offset+25, 0/*layeredPane.getHeight()-offset*/, 50, 50);
+			Tiles.add(new Tile(square,i%3));
+			layeredPane.add(square, new Integer(2));
+		}
+		for(int i = 8; i < 8+7; i ++) {
+			JLabel square = new JLabel(new ImageIcon(Squares[i%3]));
+			square.setOpaque(true);
+			square.setBounds(8*offset-25, 50+offset*(i-8), 50, 50);
+			Tiles.add(new Tile(square,i%3));
+			layeredPane.add(square, new Integer(2));
+		}
+		for(int i = 0; i < 7; i ++) {
+			JLabel square = new JLabel(new ImageIcon(Squares[i%3]));
+			square.setOpaque(true);
+			square.setBounds(325-i*offset, 350/*layeredPane.getHeight()-offset*/, 50, 50);
+			Tiles.add(new Tile(square,i%3));
+			layeredPane.add(square, new Integer(2));
+		}
+		for(int i = 0; i < 6; i ++) {
+			JLabel square = new JLabel(new ImageIcon(Squares[i%3]));
+			square.setOpaque(true);
+			square.setBounds(25, 350-i*offset/*layeredPane.getHeight()-offset*/, 50, 50);
+			Tiles.add(new Tile(square,i%3));
+			layeredPane.add(square, new Integer(2));
+		}
+		JLabel square = new JLabel(new ImageIcon(FINISH_FILENAME));
+		square.setOpaque(true);
+		square.setBounds(25, 50, 50, 50);
+		Tiles.add(new Tile(square,7));
+		layeredPane.add(square,new Integer(2));
+		
+		JLabel player1Score = new JLabel();
+		player1Score.setText("Score:"+Integer.toString(PlayerList.get(0).getScore()));
+		player1Score.setBounds(120,75,100,100);
+		player1Score.setForeground(Color.RED);
+		layeredPane.add(player1Score,new Integer(2));
+		PlayerList.get(0).addScoreLabel(player1Score);
+		
+		JLabel player2Score = new JLabel();
+		player2Score.setText("Score:"+Integer.toString(PlayerList.get(1).getScore()));
+		player2Score.setBounds(270,75,100,100);
+		player2Score.setForeground(Color.BLUE);
+		layeredPane.add(player2Score,new Integer(2));
+		PlayerList.get(1).addScoreLabel(player2Score);
+		
+		gameBoard.add(layeredPane);
+		gameBoard.pack();
 		gameBoard.setVisible(true);
 		
 		
