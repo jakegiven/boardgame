@@ -94,12 +94,12 @@ public class RPSCharacterScreen extends IntroGUI {
 		constraint4.gridx = 3;
 		buttons.add(Scissors, constraint4);
 		
-		GridBagConstraints constraint5 = new GridBagConstraints();
-		constraint5.fill = GridBagConstraints.CENTER;
-		constraint5.insets = new Insets(5, 0, 5, 0);
-		constraint5.gridy = 3;
-		constraint5.gridx = 2;
-		buttons.add(next, constraint5);
+//		GridBagConstraints constraint5 = new GridBagConstraints();
+//		constraint5.fill = GridBagConstraints.CENTER;
+//		constraint5.insets = new Insets(5, 0, 5, 0);
+//		constraint5.gridy = 3;
+//		constraint5.gridx = 2;
+//		buttons.add(next, constraint5);
 		
 		GridBagConstraints constraint6 = new GridBagConstraints();
 		constraint6.insets = new Insets(15, 0, 0, 0);
@@ -146,18 +146,24 @@ public class RPSCharacterScreen extends IntroGUI {
 			if(source.equals(Rock)) {
 				handleRock();
 				setButtonPressed(1);
-			}
-			else if( source.equals(next) && getButtonPressed() == 1) {
 				setTurnComplete(1);
-				handlenext();					
+				handlenext();	
 			}
+//			else if( source.equals(next) && getButtonPressed() == 1) {
+//				setTurnComplete(1);
+//				handlenext();					
+//			}
 			else if( source.equals(Paper)) {
 				handlePaper();
 				setButtonPressed(1);
+				setTurnComplete(1);
+				handlenext();	
 			}
 			else if(source.equals(Scissors)) {
 				handleScissors();
 				setButtonPressed(1);
+				setTurnComplete(1);
+				handlenext();	
 			}
 		}
 	

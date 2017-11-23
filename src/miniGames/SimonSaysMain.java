@@ -31,9 +31,9 @@ public class SimonSaysMain extends JFrame
 		
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		add(new JLabel("<HTML><center>Game Demo" +
-				"<BR>use the buttons above.</center></HTML>"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		add(new JLabel("<HTML><center>Game Demo" +
+//				"<BR>use the buttons above.</center></HTML>"));
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		buildGUI();	
 		setVisible(true);
 	}
@@ -63,6 +63,7 @@ public class SimonSaysMain extends JFrame
 		
 
 		menuBar.add(gameMenu);
+		
 
 	
 		setJMenuBar(menuBar);

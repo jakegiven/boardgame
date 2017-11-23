@@ -24,7 +24,6 @@ public class ClickerGame extends JFrame{
 		CompClicks = 0;
 		pointsEarned = 0;
 		gameFinished = false;
-		//initializeGame();
 		setSize(300,300);
 		JButton Easy = new JButton("Easy");
 		JButton Medium = new JButton("Medium");
@@ -85,18 +84,13 @@ public class ClickerGame extends JFrame{
 		
 		click.add(clicker);
 		click.setVisible(true);
-		clicker.requestFocusInWindow(); 
-		System.out.println("Initialize");
-		
+		clicker.requestFocusInWindow(); 		
 	}
 	public void playGame()  {
 		initializeGame();
-		
 		dispose();
 		click.setVisible(true);
 		clicker.requestFocusInWindow();
-		long endTime = System.currentTimeMillis() +1000*time;
-		//click.add(clicker);
 		new Timer(1000*time, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(UserClicks < CompClicks) {
@@ -105,7 +99,6 @@ public class ClickerGame extends JFrame{
 				endGame();
 				((Timer)e.getSource()).stop();
 				gameFinished = true;
-				//System.out.println("You earned "+pointsEarned+" points.");
 			}
 		}).start();
 

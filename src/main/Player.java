@@ -66,8 +66,8 @@ public class Player {
 	public void setLocation(int location) {this.Location = location;}
 	
 	public int rollDice() {
-		//int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);
-		int roll = 1;
+		int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);//FIXME: add this when done testing
+		//int roll = 1;
 		Location = Location + roll;
 //		final JDialog Rolled = new JDialog(new JFrame(), Name + " Rolled");
 //		JPanel Inputs = new JPanel();
@@ -93,7 +93,6 @@ public class Player {
 
 	public void setOffset(int i) {
 		 offset = i;
-		// TODO Auto-generated method stub
 		
 	}
 }

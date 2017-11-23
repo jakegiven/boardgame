@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.Timer;
 
 import main.Game;
 import main.Tile;
@@ -22,12 +23,14 @@ public class BoardGame extends Game {
 	private int Turns;
 	private boolean play;
 	private JFrame gameBoard;
-	JLabel player1;
-	JLabel player2;
-	JLabel background;
-	ImageIcon backgroundIcon;
-	Player currentPlayer;
+	private JLabel player1;
+	private JLabel player2;
+	private JLabel background;
+	private ImageIcon backgroundIcon;
+	private Player currentPlayer;
 	boolean rolled;
+	public static JLabel infoMessage;
+	public static JLabel rollLabel;
 	
 	
 	
@@ -88,6 +91,7 @@ public class BoardGame extends Game {
 	public void updateLocation(Player P) {
 		int temp = P.getLocation()%Tiles.size();
 		Rectangle temp2 = Tiles.get(temp).getLocation();
+		
 		P.getIconLabel().setBounds((int) temp2.getX()+P.getOffset(), (int) temp2.getY(), 20, 20);
 	}
 
@@ -119,6 +123,7 @@ public class BoardGame extends Game {
 		
 		Tiles.get(player.getLocation()).useType(player);
 		player.updateScore();
+
 		
 		
 	}
@@ -151,19 +156,32 @@ public class BoardGame extends Game {
 		layeredPane.add(background, 0);
 		background.setBounds(0, 0, 450, 450);
 		
-		JLabel rollLabel = new JLabel();
+		rollLabel = new JLabel();
 		rollLabel.setBounds(180,200,100,100);
 		rollLabel.setText("You rolled a "+6);
 		layeredPane.add(rollLabel, new Integer(3));
 		rollLabel.setVisible(false);
 		
+		infoMessage = new JLabel();
+		infoMessage.setText("Welcome again to bored game");
+		infoMessage.setVisible(true);
+		infoMessage.setBounds(180, 250, 100, 100);
+		layeredPane.add(infoMessage, new Integer(3));
+		
 		JButton Roll = new JButton("Roll");
 		Roll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				rollLabel.setText("You rolled a " + currentPlayer.rollDice() );
+				rollLabel.setText("You rolled a " + currentPlayer.rollDice());
 				rollLabel.setVisible(true);
+				infoMessage.setText(Tiles.get(currentPlayer.getLocation()).getText());
+//				System.out.println(currentPlayer.getName());
+//				System.out.println(currentPlayer.getLocation());
+//				System.out.println(Tiles.get(currentPlayer.getLocation()).getText());
+				infoMessage.setVisible(true);
 				rolled = true;
+
+
 			}
 		});
 
@@ -173,6 +191,11 @@ public class BoardGame extends Game {
 		Roll.setBounds(206,185,40,20);
 		layeredPane.add(Roll, new Integer(1));
 		
+		JLabel square1 = new JLabel(new ImageIcon(FINISH_FILENAME));
+		square1.setOpaque(true);
+		square1.setBounds(25, 50, 50, 50);
+		Tiles.add(new Tile(square1,7));
+		layeredPane.add(square1,new Integer(2));
 		for(int i = 0; i < 8; i ++) {
 			JLabel square = new JLabel(new ImageIcon(Squares[i%3]));
 			square.setOpaque(true);
@@ -201,11 +224,7 @@ public class BoardGame extends Game {
 			Tiles.add(new Tile(square,i%3));
 			layeredPane.add(square, new Integer(2));
 		}
-		JLabel square = new JLabel(new ImageIcon(FINISH_FILENAME));
-		square.setOpaque(true);
-		square.setBounds(25, 50, 50, 50);
-		Tiles.add(new Tile(square,7));
-		layeredPane.add(square,new Integer(2));
+
 		
 		JLabel player1Score = new JLabel();
 		player1Score.setText("Score:"+Integer.toString(PlayerList.get(0).getScore()));
