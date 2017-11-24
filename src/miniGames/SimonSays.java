@@ -1,20 +1,27 @@
-package game.minigames;
+package miniGames;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.Random;
+import miniGames.*;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class SimonSays{
 	private ArrayList<Integer> Answers;
 	private int points;
-	private String Instructions;
+	private boolean done;
+	private JFrame intro;
 
 	public SimonSays() {
 		Answers = new ArrayList<Integer>();
 		points = 0;
-		Instructions = "TODO insert game description here";
+		done = false;
 
+//		intro = new IntroMiniGameScreen("Simon says", "rules");
+//		intro.setAlwaysOnTop(true);
+/*	
 		this.newAnswer();
 		this.newAnswer();
 		this.newAnswer();
@@ -26,7 +33,7 @@ public class SimonSays{
 		Dialogue = Dialogue + "\n press OK when ready";
 
 		JTextField Input = new JTextField();
-		Object[] message = { /*Dialogue,*/
+		Object[] message = {
 		    "Repeat!", Input,
 		};
 		int option = JOptionPane.showConfirmDialog(null, Dialogue, "Simon Says", JOptionPane.OK_CANCEL_OPTION);
@@ -41,13 +48,14 @@ public class SimonSays{
 					JOptionPane.showMessageDialog(null, "you lose!");
 				}
 //				JOptionPane.showMessageDialog(null, Input.getText()+" : "+ this.fetchAnswers());
-				JOptionPane.showMessageDialog(null, this.fetchAnswers());
+//				JOptionPane.showMessageDialog(null, this.fetchAnswers());
+				done = true;
 			} 
 			else {
 			}
 		} 
 		else {
-		}
+		}//*/
 	}
 	public ArrayList<Integer> getAnswers(){
 		return Answers;
@@ -98,6 +106,10 @@ public class SimonSays{
 -		}*/
 		return false;
 	}
-	public void newGame(String name){
+	public boolean Finished(){
+		return done;
+	}
+	public int getScore() {
+		return points;
 	}
 }
