@@ -19,6 +19,14 @@ public class RPS extends Game{
 	public RPS() {
 		intro = new IntroMiniGameScreen("Let's Play Rock, Paper, Scissors!!", "\r\n" + "Rules: The two players each chose a object: a rock, a sheet of paper, or a pair of scissors.\r\n\t" +  
 				"The winner of that round depends on the items chosen." +"\r\n\t" +  "If the same item is chosen, it's a tie." + "\r\n\t" + "Rock beats scissors, because a rock can smash scissors."+"\r\n\t"+ "Scissors beats paper, because scissors can cut paper." + "\r\n\t" + "Paper beats rock, because a sheet of paper can cover a rock." + "\r\n\t" + "Play continues until one player wins twice.");
+		while(intro.getCheckNext() == 0) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		endGame = 0;
 		gamesPlayed = 0;
 		score = 0;
