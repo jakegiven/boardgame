@@ -2,6 +2,8 @@ package miniGames;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -169,6 +171,7 @@ public class BoardGame extends Game {
 		layeredPane.add(infoMessage, new Integer(3));
 		
 		JButton Roll = new JButton("Roll");
+		Roll.setMargin(new Insets(0,0,0,0));
 		Roll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -180,8 +183,6 @@ public class BoardGame extends Game {
 //				System.out.println(Tiles.get(currentPlayer.getLocation()).getText());
 				infoMessage.setVisible(true);
 				rolled = true;
-
-
 			}
 		});
 
@@ -225,7 +226,6 @@ public class BoardGame extends Game {
 			layeredPane.add(square, new Integer(2));
 		}
 
-		
 		JLabel player1Score = new JLabel();
 		player1Score.setText("Score:"+Integer.toString(PlayerList.get(0).getScore()));
 		player1Score.setBounds(120,75,100,100);
@@ -243,11 +243,5 @@ public class BoardGame extends Game {
 		gameBoard.add(layeredPane);
 		gameBoard.pack();
 		gameBoard.setVisible(true);
-		
-		
-		
 	}
-	
-	
-	
 }

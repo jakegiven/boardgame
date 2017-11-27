@@ -46,7 +46,7 @@ public class RPS extends Game{
 		realScore = 20;
 		players = new ArrayList<Player>();
 		Player comp = new Player();
-		comp.setName("Computer");
+		comp.setName("player 2");
 		previous1 = "";
 		previous2 = "";
 		this.comp = "";
