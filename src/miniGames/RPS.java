@@ -3,6 +3,8 @@ package miniGames;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.swing.JOptionPane;
+
 import main.*;
 
 public class RPS extends Game{
@@ -16,6 +18,10 @@ public class RPS extends Game{
 	private int score; 
 	private int winner;
 	private int realScore;
+	private String[] types= { "","Scissors","Paper","Rock"};
+	private String comp;
+	private String previous1;
+	private String previous2;
 	
 	public RPS() {
 		intro = new IntroMiniGameScreen("Let's Play Rock, Paper, Scissors!!", "\r\n" + "Rules: The two players each chose a object: a rock, a sheet of paper, or a pair of scissors.\r\n\t" +  
@@ -28,6 +34,9 @@ public class RPS extends Game{
 		players = new ArrayList<Player>();
 		Player comp = new Player();
 		comp.setName("Computer");
+		previous1 = "";
+		previous2 = "";
+		this.comp = "";
 		
 		Player real = new Player();
 		real.setName("Sarah");
@@ -37,10 +46,11 @@ public class RPS extends Game{
 	}
 	
 	public void PlayGame() {
+
 		while(endGame == 0) {
-			PlayTurn(players.get(0), 1);
-			PlayTurn(players.get(1), 2);
 			
+			PlayTurn(players.get(1), 2);
+			PlayTurn(players.get(0), 1);
 			CompareCharacters();
 			gamesPlayed++;
 			endGame = checkGame();
@@ -75,23 +85,28 @@ public class RPS extends Game{
 		if(player1_character == player2_character) {
 			gamesPlayed--;
 			System.out.println("Tied this round");
+			comp = "Tied this round";
 			return;
 		}//paper == 2 ,scissors == 1, rock == 3
 		else if(player1_character == 3 &  player2_character == 1) {
 			System.out.println("Player 1 wins this round");
 			score = score + 1;
+			comp = "Player 1 wins this round";
 		}
 		else if(player1_character == 2 &  player2_character == 3) {
 			System.out.println("Player 1 wins this round");
 			score = score + 1;
+			comp = "Player 1 wins this round";
 		}
 		else if(player1_character == 1 &  player2_character == 2) {
 			System.out.println("Player 1 wins this round");
 			score = score + 1;
+			comp = "Player 1 wins this round";
 		}
 		else {
 			System.out.println("Player 2 wins this round");
 			score = score + 2;
+			comp = "Player 2 wins this round";
 		}
 		
 	}
@@ -99,6 +114,7 @@ public class RPS extends Game{
 	public void PlayTurn(Player player, int num) {
 		if(player.getName() == "Computer") {
 			player1_character = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+			previous1 = types[player1_character];
 			System.out.println("Computer played turn. Computer plays "+ player1_character);
 		}
 		else if(num == 1) {
@@ -112,11 +128,18 @@ public class RPS extends Game{
 				}
 			}
 			player1_character = chosing.getPlayer();
+			//temp = "Player 1 has played. They chose "+ player1_character;
+			previous1 = types[player1_character];
 			System.out.println("Player 1 has played. They chose "+ player1_character);
 			chosing.dispose();
 		}
 		else if(num == 2) {
-			chosing = new RPSCharacterScreen("Choose an Item", "\r\n" + "If the same item is chosen, it's a tie." + "\r\n" + "Rock beats scissors, because a rock can smash scissors."+"\r\n"+ "Scissors beats paper, because scissors can cut paper." + "\r\n" + "Paper beats rock, because a sheet of paper can cover a rock." + "\r\n");
+			chosing = new RPSCharacterScreen("Choose an Item", "\r\n" + "If the same item is chosen, it's a tie." + 
+											"\r\n" + "Rock beats scissors, because a rock can smash scissors."+"\r\n"+
+											"Scissors beats paper, because scissors can cut paper." + "\r\n" + 
+											"Paper beats rock, because a sheet of paper can cover a rock." + "\r\n"+
+											"\r\n\r\n\r\n\r\n" + "Last turn player 1 played:"+previous1+" and player 2 played:"+previous2+
+											"\r\n\r\n"+comp);
 			while(chosing.getTurnComplete() == 0) {
 				try {
 					Thread.sleep(1000);
@@ -126,6 +149,7 @@ public class RPS extends Game{
 				}
 			}
 			player2_character = chosing.getPlayer();
+			previous2 = types[player2_character];
 			System.out.println("Player 2 has played. They chose "+ player2_character);
 			chosing.dispose();
 		}

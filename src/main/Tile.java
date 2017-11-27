@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import miniGames.*;
@@ -82,6 +83,10 @@ public class Tile {
 			}
 			if(Roc_Pap_Sciss.getWinner() == 2) {
 				player.addToScore(Roc_Pap_Sciss.getScore());
+				JOptionPane.showMessageDialog(null, "Congrats you won!  You earned "+Roc_Pap_Sciss.getScore()+" points", "Win", -1);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "You didn't win, better luck next time", "Win", -1);
 			}
 			
 		}

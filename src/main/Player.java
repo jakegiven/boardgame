@@ -66,28 +66,9 @@ public class Player {
 	public void setLocation(int location) {this.Location = location;}
 	
 	public int rollDice() {
-		int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);//FIXME: add this when done testing
-		//int roll = 1;
+		//int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);//FIXME: add this when done testing
+		int roll = 9;
 		Location = Location + roll;
-//		final JDialog Rolled = new JDialog(new JFrame(), Name + " Rolled");
-//		JPanel Inputs = new JPanel();
-//		Rolled.setSize(150, 125);
-//		
-//		JButton ok = new JButton("OK");
-//		ok.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				Rolled.setVisible(false);
-//				Rolled.dispose();
-//			}
-//		});
-//		JTextArea Text = new JTextArea("You rolled a " + roll);
-//		Inputs.add(Text);
-//		Inputs.add(ok);
-//		Rolled.add(Inputs);
-//		
-//		Rolled.setVisible(true);
-//		
-//		Rolled.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		return roll;
 	}
 

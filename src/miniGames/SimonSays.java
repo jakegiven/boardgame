@@ -18,44 +18,6 @@ public class SimonSays{
 		Answers = new ArrayList<Integer>();
 		points = 0;
 		done = false;
-
-//		intro = new IntroMiniGameScreen("Simon says", "rules");
-//		intro.setAlwaysOnTop(true);
-/*	
-		this.newAnswer();
-		this.newAnswer();
-		this.newAnswer();
-		this.newAnswer();
-		String Dialogue= "Memorize! ";
-		for(int i = 0;i<this.getAnswers().size();i++) {
-			Dialogue = Dialogue + this.getAnswers().get(i) + " ";
-		}
-		Dialogue = Dialogue + "\n press OK when ready";
-
-		JTextField Input = new JTextField();
-		Object[] message = {
-		    "Repeat!", Input,
-		};
-		int option = JOptionPane.showConfirmDialog(null, Dialogue, "Simon Says", JOptionPane.OK_CANCEL_OPTION);
-		if (option == JOptionPane.OK_OPTION) {
-			int option2 = JOptionPane.showConfirmDialog(null, message, "Simon Says", JOptionPane.OK_CANCEL_OPTION);
-			if (option2 == JOptionPane.OK_OPTION) {
-				//FIXME compare Input to Answers
-				if(this.compareAnswers(Input.getText()+" ") == true) {
-					JOptionPane.showMessageDialog(null, "you win! \n" + this.getPoints() + " points awarded");
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "you lose!");
-				}
-//				JOptionPane.showMessageDialog(null, Input.getText()+" : "+ this.fetchAnswers());
-//				JOptionPane.showMessageDialog(null, this.fetchAnswers());
-				done = true;
-			} 
-			else {
-			}
-		} 
-		else {
-		}//*/
 	}
 	public ArrayList<Integer> getAnswers(){
 		return Answers;
@@ -73,37 +35,18 @@ public class SimonSays{
 	public String fetchAnswers() {
 		String temp = "";
 		for(int i = 0;i<Answers.size();i++) {
-			temp = temp + Answers.get(i) + " ";
+			temp = temp + Answers.get(i);
 		}		
 		return temp;
 	}
 	public boolean compareAnswers(String answers) {
-		ArrayList<Integer> compare = new ArrayList<Integer>();
-		for(int i = 0;i<answers.length();i++) {
-			if(answers.charAt(i) != ",".charAt(0)) {
-				if(answers.charAt(i) != " ".charAt(0)) {
-					compare.add(Integer.parseInt(""+answers.charAt(i)));
-				}
-			}
-		}
-		String comp = "";
-		for(int i = 0;i<compare.size();i++) {
-			comp = comp + compare.get(i) + " ";
-		}
-		if(comp.equals(this.fetchAnswers())) {
+
+		answers = answers.replaceAll("[^0-9]","");
+		
+		if(answers.equals(this.fetchAnswers())) {
 			return true;
 		}
-
-		/*		if(answers.size() != Answers.size()) {
-			return false;			
-		}
-		else {
-			for(int i = 0;i<answers.size();i++) {
-				if(answers.get(i) != Answers.get(i)) {
-					return false;
-				}
-			}
--		}*/
+		
 		return false;
 	}
 	public boolean Finished(){

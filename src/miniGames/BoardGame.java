@@ -48,7 +48,7 @@ public class BoardGame extends Game {
 	
 	public BoardGame() {
 		introScreen = new IntroMiniGameScreen("Bored Game", "The objective of the game is to get the most points possible.  \nYou score points"+
-	" by landing on + squares and winning minigames.  \nYou lose points by losing minigames and by landing on - squares.");
+	" by landing on + squares and winning minigames.  \nYou lose points by landing on - squares.");
 		setTiles(new ArrayList<Tile>());
 
 		
@@ -163,7 +163,7 @@ public class BoardGame extends Game {
 		rollLabel.setVisible(false);
 		
 		infoMessage = new JLabel();
-		infoMessage.setText("Welcome again to bored game");
+		infoMessage.setText("<html>Welcome again to bored game</html>");
 		infoMessage.setVisible(true);
 		infoMessage.setBounds(180, 250, 100, 100);
 		layeredPane.add(infoMessage, new Integer(3));
@@ -174,7 +174,7 @@ public class BoardGame extends Game {
 				
 				rollLabel.setText("You rolled a " + currentPlayer.rollDice());
 				rollLabel.setVisible(true);
-				infoMessage.setText(Tiles.get(currentPlayer.getLocation()).getText());
+				infoMessage.setText("<html>"+Tiles.get(currentPlayer.getLocation()).getText()+"</html>");
 //				System.out.println(currentPlayer.getName());
 //				System.out.println(currentPlayer.getLocation());
 //				System.out.println(Tiles.get(currentPlayer.getLocation()).getText());

@@ -12,6 +12,10 @@ public abstract class IntroGUI extends JFrame{
 	protected JPanel Inputs;
 	protected boolean play;
 	
+	public boolean getPlay() {
+		return play;
+	}
+	
 	public IntroGUI(String TitleContent, String RulesContent) {
 		super(TitleContent);
 		
