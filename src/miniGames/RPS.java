@@ -8,6 +8,7 @@ import main.*;
 public class RPS extends Game{
 	private ArrayList<Player> players;
 	private IntroMiniGameScreen intro;
+	private IntroMiniGameScreen End;
 	private int player1_character;
 	private int player2_character;
 	private RPSCharacterScreen chosing;
@@ -15,10 +16,19 @@ public class RPS extends Game{
 	private int gamesPlayed;
 	private double score; 
 	private int winner;
+	private CharacterCompareGUI CompareScreen;
 	
 	public RPS() {
 		intro = new IntroMiniGameScreen("Let's Play Rock, Paper, Scissors!!", "\r\n" + "Rules: The two players each chose a object: a rock, a sheet of paper, or a pair of scissors.\r\n\t" +  
 				"The winner of that round depends on the items chosen." +"\r\n\t" +  "If the same item is chosen, it's a tie." + "\r\n\t" + "Rock beats scissors, because a rock can smash scissors."+"\r\n\t"+ "Scissors beats paper, because scissors can cut paper." + "\r\n\t" + "Paper beats rock, because a sheet of paper can cover a rock." + "\r\n\t" + "Play continues until one player wins twice.");
+		while(intro.getCheckNext() == 0) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		endGame = 0;
 		gamesPlayed = 0;
 		score = 0;
@@ -40,8 +50,26 @@ public class RPS extends Game{
 			
 			CompareCharacters();
 			gamesPlayed++;
+			CompareScreen = new CharacterCompareGUI("Checking Winner" , player1_character, player2_character, players);
+			while(CompareScreen.getButtonPressed() == 0) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			endGame = checkGame();
 			
+		}
+		End = new IntroMiniGameScreen("The Game has been won.", "\r\nAnd the Winner is.....\r\n\t"+ players.get(winner - 1).getName().toUpperCase() + "!!!");
+		while(End.getCheckNext() == 0) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		System.out.println("Player "+ winner + " won");
 	}
@@ -50,7 +78,7 @@ public class RPS extends Game{
 		
 		if(gamesPlayed == 3) {
 			if(score == 5) {
-				setWinner(2);
+				setWinner(2);				
 			}
 			else if(score == 4) {
 				setWinner(1);
