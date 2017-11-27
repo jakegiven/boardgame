@@ -52,7 +52,7 @@ public class BoardGame extends Game {
 		introScreen = new IntroMiniGameScreen("Bored Game", "The objective of the game is to get the most points possible.  \nYou score points"+
 	" by landing on + squares and winning minigames.  \nYou lose points by landing on - squares.");
 		setTiles(new ArrayList<Tile>());
-
+		introScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setTurns(40); //May need to change depending on the implementation of player turns
 		playGame();
@@ -133,6 +133,8 @@ public class BoardGame extends Game {
 		int offset = 50;
 		gameBoard = new JFrame("Bored game");
 		gameBoard.setPreferredSize(new Dimension(450,450));
+		gameBoard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		JLayeredPane layeredPane = new JLayeredPane();
 		backgroundIcon = new ImageIcon(BOARD_FILENAME);
 		
@@ -200,7 +202,7 @@ public class BoardGame extends Game {
 		for(int i = 0; i < 8; i ++) {
 			JLabel square = new JLabel(new ImageIcon(Squares[i%3]));
 			square.setOpaque(true);
-			square.setBounds(i*offset+25, 0/*layeredPane.getHeight()-offset*/, 50, 50);
+			square.setBounds(i*offset+25, 0, 50, 50);
 			Tiles.add(new Tile(square,i%3));
 			layeredPane.add(square, new Integer(2));
 		}
