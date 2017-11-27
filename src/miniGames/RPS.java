@@ -29,6 +29,7 @@ public class RPS extends Game{
 				e.printStackTrace();
 			}
 		}
+		
 		endGame = 0;
 		gamesPlayed = 0;
 		score = 0;
@@ -59,9 +60,10 @@ public class RPS extends Game{
 					e.printStackTrace();
 				}
 			}
-			endGame = checkGame();
 			
+			endGame = checkGame();
 		}
+		
 		End = new IntroMiniGameScreen("The Game has been won.", "\r\nAnd the Winner is.....\r\n\t"+ players.get(winner - 1).getName().toUpperCase() + "!!!");
 		while(End.getCheckNext() == 0) {
 			try {
