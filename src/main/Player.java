@@ -67,8 +67,8 @@ public class Player {
 	
 	public int rollDice() {
 		//int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);//FIXME: add this when done testing
-		int roll = 9;
-		Location = Location + roll;
+		int roll = 29;
+		Location = (Location + roll)%29;
 		return roll;
 	}
 

@@ -56,6 +56,8 @@ public class ClickerGame extends JFrame{
 		add(Easy);
 		add(Medium);
 		add(Hard);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		
 		setVisible(true);
 	}
@@ -84,6 +86,8 @@ public class ClickerGame extends JFrame{
 		
 		click.add(clicker);
 		click.setVisible(true);
+		click.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		clicker.requestFocusInWindow(); 		
 	}
 	public void playGame()  {
