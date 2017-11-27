@@ -10,9 +10,10 @@ import javax.swing.JFrame;
 
 public class IntroMiniGameScreen extends IntroGUI{
 
+	private int checkNext;
 	public IntroMiniGameScreen(String TitleContent, String RulesContent) {
 		super(TitleContent, RulesContent);
-		
+		setCheckNext(0);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		buildGUI();	
 		setVisible(true);
@@ -42,6 +43,14 @@ public class IntroMiniGameScreen extends IntroGUI{
 		add(Inputs);
 	}
 	
+	public int getCheckNext() {
+		return checkNext;
+	}
+
+	public void setCheckNext(int checkNext) {
+		this.checkNext = checkNext;
+	}
+
 	private class JButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) //this is the method MenuListener must implement, as it comes from the ActionListener interface.
@@ -51,7 +60,7 @@ public class IntroMiniGameScreen extends IntroGUI{
 
 		private void handlenext() {
 			play = true;
-			
+			setCheckNext(1);
 			setVisible(false);
 			dispose();
 			
