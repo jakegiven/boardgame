@@ -91,7 +91,7 @@ public class BoardGame extends Game {
 		
 	}
 	public void updateLocation(Player P) {
-		int temp = P.getLocation()%Tiles.size();
+		int temp = P.getLocation() % Tiles.size();
 		Rectangle temp2 = Tiles.get(temp).getLocation();
 		
 		P.getIconLabel().setBounds((int) temp2.getX()+P.getOffset(), (int) temp2.getY(), 20, 20);

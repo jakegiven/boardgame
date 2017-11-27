@@ -147,22 +147,6 @@ public class RPS extends Game{
 			previous1 = types[player1_character];
 			System.out.println("Computer played turn. Computer plays "+ player1_character);
 		}
-		else if(num == 1) {
-			chosing = new RPSCharacterScreen("Choose an Item:", "\r\n" + "If the same item is chosen, it's a tie." + "\r\n" + "Rock beats scissors, because a rock can smash scissors."+"\r\n"+ "Scissors beats paper, because scissors can cut paper." + "\r\n" + "Paper beats rock, because a sheet of paper can cover a rock." + "\r\n");
-			while(chosing.getTurnComplete() == 0) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			player1_character = chosing.getPlayer();
-			//temp = "Player 1 has played. They chose "+ player1_character;
-			previous1 = types[player1_character];
-			System.out.println("Player 1 has played. They chose "+ player1_character);
-			chosing.dispose();
-		}
 		else if(num == 2) {
 			chosing = new RPSCharacterScreen("Choose an Item", "\r\n" + "If the same item is chosen, it's a tie." + 
 											"\r\n" + "Rock beats scissors, because a rock can smash scissors."+"\r\n"+
