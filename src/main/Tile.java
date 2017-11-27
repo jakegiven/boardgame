@@ -72,7 +72,7 @@ public class Tile {
 			player.subtractFromScore(ThreadLocalRandom.current().nextInt(10, 25 + 1));
 		}
 		else if(Type == 3) {//Rock, Paper, Scissors minigame
-			RPS Roc_Pap_Sciss = new RPS();
+			RPS Roc_Pap_Sciss = new RPS(player);
 			while(Roc_Pap_Sciss.checkGame() == 0) {
 				try {
 					Thread.sleep(1000);
