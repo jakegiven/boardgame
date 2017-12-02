@@ -146,7 +146,7 @@ public class BoardGame extends Game {
 		PlayerList.get(1).addIconLabel(player2);
 		player1.setBounds(40, 50, 20, 20);
 		player1.setOpaque(true);
-		player2.setBounds(40, 80	, 20	, 20);
+		player2.setBounds(40, 80, 20, 20);
 		player2.setOpaque(true);
 		layeredPane.add(player1, new Integer(3));
 		layeredPane.add(player2, new Integer(3));
