@@ -61,8 +61,10 @@ public class CharacterCompareGUI extends JFrame{
 
 
 	private void buildGUI(int player1_character, int player2_character) {
+		int tie = 0;
 		if(player1_character == player2_character) {
 			winner.setText("No one!!! Tied Round.");
+			tie = 1;
 		}
 		else if(player1_character == 3 &  player2_character == 1) {
 			winner.setText( playerList.get(0).getName() + "!!!!!");
@@ -90,7 +92,8 @@ public class CharacterCompareGUI extends JFrame{
 		constraint.gridx = 0;
 		constraint.ipady = 0;
 		constraint.ipadx = 0;
-		if(player1_character == 3) {
+		
+		if(player1_character == 3 ) {
 			Inputs.add(Rock, constraint);
 		}
 		else if(player1_character == 2) {
@@ -100,18 +103,21 @@ public class CharacterCompareGUI extends JFrame{
 			Inputs.add(Scissors, constraint);
 		}
 		
+		
 		constraint.insets = new Insets(0, 5, 0, 5);
 		constraint.anchor = GridBagConstraints.CENTER;
 		constraint.gridy = 1;
-		constraint.gridx = 1;
-		if(player2_character == 3) {
-			Inputs.add(Rock, constraint);
-		}
-		else if(player2_character == 2) {
-			Inputs.add(Paper, constraint);
-		}
-		else if(player2_character == 1) {
-			Inputs.add(Scissors, constraint);
+		constraint.gridx = 2;
+		if(tie == 0) {
+			if(player2_character == 3) {
+				Inputs.add(Rock, constraint);
+			}
+			else if(player2_character == 2) {
+				Inputs.add(Paper, constraint);
+			}
+			else if(player2_character == 1) {
+				Inputs.add(Scissors, constraint);
+			}
 		}
 		
 		constraint.insets = new Insets(0, 5, 0, 5);
