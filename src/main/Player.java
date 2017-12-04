@@ -28,6 +28,8 @@ public class Player {
 		Location = 0;
 		Icon = null;
 		offset = 0;
+		playerScore = null;
+		playerIcon = null;
 	}
 	public void updateScore() {
 		playerScore.setText("Score:"+Integer.toString(Score));
@@ -68,7 +70,7 @@ public class Player {
 	public int rollDice() {
 		//int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);//FIXME: add this when done testing
 
-		int roll = 29;
+		int roll = 6;
 		Location = (Location + roll)%29;
 
 		return roll;

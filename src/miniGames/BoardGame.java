@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 
 import main.Game;
@@ -44,9 +46,8 @@ public class BoardGame extends Game {
 	public static final String RAINBOW_FILENAME = "rainbowsquare.jpg";
 	private static final String FINISH_FILENAME = "finish.jpg";
 	
-	private String[] Squares = {PLUS_FILENAME,MINUS_FILENAME,RAINBOW_FILENAME};
-	//public static final ArrayList<String> Squares = [PLUS_FILENAME, MINUS_FILENAME, RAINBOW_FILENAME];
-	
+	private String[] ICONS = {"Squid.png","Elephant.png","Dog1.png","Girl.png","Boy.png","Cat.png","Horse.png","Eagle.png","Squirel.png","Penguin.png","Werewolf.png"};
+	private String[] Squares = {PLUS_FILENAME,MINUS_FILENAME,RAINBOW_FILENAME};	
 	
 	public BoardGame() {
 		introScreen = new IntroMiniGameScreen("Bored Game", "The objective of the game is to get the most points possible.  \nYou score points"+
@@ -66,6 +67,8 @@ public class BoardGame extends Game {
 				e.printStackTrace();
 			}
 		}
+		GetPlayerIcons();
+		
 		play = true;
 		Player player1 = new Player();
 		player1.setLocation(0);
@@ -88,6 +91,51 @@ public class BoardGame extends Game {
 			}
 		}
 		return 0;
+		
+	}
+	private void GetPlayerIcons() {
+
+
+		for(int i = 1; i < 3; i ++) {//change this for variable numbers of players
+			JTextField Input = new JTextField();
+			Player player = new Player();
+			Object[] message = { /*Dialogue,*/
+				    "Please enter player "+i+" name:", Input,
+				};
+			JOptionPane.showMessageDialog(null, message, "Player "+i+" name", -1);
+			player.setName(Input.getText());
+
+			JButton icon1 = new JButton();
+			
+//	private String[] ICONS = {"Squid.png","Elephant.png","Dog.png","Girl.png","Boy.png","Cat.png","Horse.png","Eagle.png","Squirel.png","Penguin.png"};
+			Object[] colours = {new ImageIcon("Squid.png"), new ImageIcon("Elephant.png"), 
+					new ImageIcon("Dog.png"),new ImageIcon("Girl.png"),new ImageIcon("Boy.png"),new ImageIcon("Cat.png"),new ImageIcon("Horse.png"),
+					new ImageIcon("Eagle.png"),new ImageIcon("Squirel.png"),new ImageIcon("Penguin.png"),new ImageIcon("Werewolf.png")};
+
+			int n = JOptionPane.showOptionDialog(null,
+			    "Which icon will you pick?",
+			    "Choose a character icon",
+			    JOptionPane.DEFAULT_OPTION,
+			    JOptionPane.QUESTION_MESSAGE,
+			    null,
+			    colours,
+			    colours[0]);
+			System.out.println(n);
+			String temp = "";
+			if(n >=0) {
+				temp = ICONS[n].replaceAll(".png", "");
+			}
+			player.setIcon(new ImageIcon(temp+"small.png"));
+			System.out.println(temp);
+			PlayerList.add(player);
+		}
+		
+
+		for(Player P:PlayerList) {
+			System.out.println(P.getName());
+
+		}
+		
 		
 	}
 	public void updateLocation(Player P) {
@@ -138,15 +186,15 @@ public class BoardGame extends Game {
 		JLayeredPane layeredPane = new JLayeredPane();
 		backgroundIcon = new ImageIcon(BOARD_FILENAME);
 		
-		PlayerList.get(0).setIcon(new ImageIcon(FIRE_FILENAME));
-		PlayerList.get(1).setIcon(new ImageIcon(WATER_FILENAME));
+		//PlayerList.get(0).setIcon(new ImageIcon(FIRE_FILENAME));
+		//PlayerList.get(1).setIcon(new ImageIcon(WATER_FILENAME));
 		player1 = new JLabel(PlayerList.get(0).getIcon());
-		player2 = new JLabel(PlayerList.get(1).getIcon());
+		player2 = new JLabel(PlayerList.get(1).getIcon());//naming is weird, player1, player2 are jlabels created with the icons of the players
 		PlayerList.get(0).addIconLabel(player1);
 		PlayerList.get(1).addIconLabel(player2);
 		player1.setBounds(40, 50, 20, 20);
 		player1.setOpaque(true);
-		player2.setBounds(40, 80	, 20	, 20);
+		player2.setBounds(40, 80, 20, 20);
 		player2.setOpaque(true);
 		layeredPane.add(player1, new Integer(3));
 		layeredPane.add(player2, new Integer(3));
