@@ -58,7 +58,6 @@ public class ClickerGame extends JFrame{
 		add(Hard);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
 		setVisible(true);
 	}
 	public int GetPoints() {
@@ -68,8 +67,6 @@ public class ClickerGame extends JFrame{
 		return gameFinished;
 	}
 	
-
-
 	public void initializeGame() {
 		click = new JDialog(new JFrame(),"The magical clicker game");
 		click.setSize(300, 300);
@@ -90,6 +87,7 @@ public class ClickerGame extends JFrame{
 
 		clicker.requestFocusInWindow(); 		
 	}
+	
 	public void playGame()  {
 		initializeGame();
 		dispose();
