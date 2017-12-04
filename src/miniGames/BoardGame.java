@@ -57,8 +57,9 @@ public class BoardGame extends Game {
 		introScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setTurns(40); //May need to change depending on the implementation of player turns
-		playGame();
 		MaxPoints = 100;
+		playGame();
+
 	}
 	public int playGame() {
 		while(!introScreen.play) {
