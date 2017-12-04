@@ -68,9 +68,9 @@ public class Player {
 	public void setLocation(int location) {this.Location = location;}
 	
 	public int rollDice() {
-		//int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);//FIXME: add this when done testing
 
-		int roll = 6;
+		int roll = ThreadLocalRandom.current().nextInt(1, 6 + 1);//FIXME: add this when done testing
+		//int roll = 9;
 		Location = (Location + roll)%29;
 
 		return roll;
