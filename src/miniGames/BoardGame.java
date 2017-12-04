@@ -35,6 +35,7 @@ public class BoardGame extends Game {
 	boolean rolled;
 	public static JLabel infoMessage;
 	public static JLabel rollLabel;
+	private int MaxPoints;
 	
 	
 	
@@ -57,6 +58,7 @@ public class BoardGame extends Game {
 		
 		setTurns(40); //May need to change depending on the implementation of player turns
 		playGame();
+		MaxPoints = 100;
 	}
 	public int playGame() {
 		while(!introScreen.play) {
@@ -84,11 +86,18 @@ public class BoardGame extends Game {
 //		PlayerList.add(player1);
 //		PlayerList.add(player2);
 		CreateBoard();
-		while(play) {
+		int i = 0;
+		while(i < Turns) {
 			for(Player P:PlayerList) {
 				currentPlayer = P;
 				PlayTurn(currentPlayer);
+				if(P.getScore() > MaxPoints) {
+					JOptionPane.showMessageDialog(null, P.getName()+" won the game with:"+P.getScore()+" points!  Congratulations!", "Winner!", -1);
+					gameBoard.dispose();
+					return 0;
+				}
 			}
+			i++;
 		}
 		return 0;
 		
