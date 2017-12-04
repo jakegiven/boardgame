@@ -46,7 +46,7 @@ public class BoardGame extends Game {
 	public static final String RAINBOW_FILENAME = "rainbowsquare.jpg";
 	private static final String FINISH_FILENAME = "finish.jpg";
 	
-	private String[] ICONS = {"Squid.png","Elephant.png","Dog1.png","Girl.png","Boy.png","Cat.png","Horse.png","Eagle.png","Squirel.png","Penguin.png","Werewolf.png"};
+	private String[] ICONS = {"Squid.png","Elephant.png","Dog.png","Girl.png","Boy.png","Cat.png","Horse.png","Eagle.png","Squirel.png","Penguin.png","Werewolf.png"};
 	private String[] Squares = {PLUS_FILENAME,MINUS_FILENAME,RAINBOW_FILENAME};	
 	
 	public BoardGame() {
@@ -70,19 +70,19 @@ public class BoardGame extends Game {
 		GetPlayerIcons();
 		
 		play = true;
-		Player player1 = new Player();
-		player1.setLocation(0);
-		player1.setName("Jake");
-		player1.setScore(0);
-		player1.setIcon(null);
-		Player player2 = new Player();
-		player2.setLocation(0);
-		player2.setName("Sarah");
-		player2.setScore(0);
-		player2.setIcon(null);
-		player1.setOffset(30);
-		PlayerList.add(player1);
-		PlayerList.add(player2);
+//		Player player1 = new Player();
+//		player1.setLocation(0);
+//		player1.setName("Jake");
+//		player1.setScore(0);
+//		player1.setIcon(null);
+//		Player player2 = new Player();
+//		player2.setLocation(0);
+//		player2.setName("Sarah");
+//		player2.setScore(0);
+//		player2.setIcon(null);
+//		player1.setOffset(30);
+//		PlayerList.add(player1);
+//		PlayerList.add(player2);
 		CreateBoard();
 		while(play) {
 			for(Player P:PlayerList) {
@@ -120,19 +120,20 @@ public class BoardGame extends Game {
 			    null,
 			    colours,
 			    colours[0]);
-			System.out.println(n);
+			//system.out.println(n);
 			String temp = "";
 			if(n >=0) {
 				temp = ICONS[n].replaceAll(".png", "");
 			}
 			player.setIcon(new ImageIcon(temp+"small.png"));
-			System.out.println(temp);
+			//system.out.println(temp);
+			player.setOffset((i-1)*30);
 			PlayerList.add(player);
 		}
 		
 
 		for(Player P:PlayerList) {
-			System.out.println(P.getName());
+			//system.out.println(P.getName());
 
 		}
 		
@@ -228,9 +229,9 @@ public class BoardGame extends Game {
 				rollLabel.setText("You rolled a " + currentPlayer.rollDice());
 				rollLabel.setVisible(true);
 				infoMessage.setText("<html>"+Tiles.get(currentPlayer.getLocation()).getText()+"</html>");
-//				System.out.println(currentPlayer.getName());
-//				System.out.println(currentPlayer.getLocation());
-//				System.out.println(Tiles.get(currentPlayer.getLocation()).getText());
+//				//system.out.println(currentPlayer.getName());
+//				//system.out.println(currentPlayer.getLocation());
+//				//system.out.println(Tiles.get(currentPlayer.getLocation()).getText());
 				infoMessage.setVisible(true);
 				rolled = true;
 			}
