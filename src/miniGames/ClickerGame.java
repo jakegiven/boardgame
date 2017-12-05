@@ -19,7 +19,7 @@ public class ClickerGame extends JFrame{
 	public ClickerGame(String windowTitle) {
 		super(windowTitle);
 		
-		time = 1;//FIXME change when not testing anymore
+		time = 10;
 		UserClicks = 0;
 		CompClicks = 0;
 		pointsEarned = 0;
@@ -33,7 +33,7 @@ public class ClickerGame extends JFrame{
 		setLayout(gl);
 		Easy.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				CompClicks = 0;//FIXME change when not testing anymore
+				CompClicks = 20;
 				pointsEarned = 5;
 
 				playGame();

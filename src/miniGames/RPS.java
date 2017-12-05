@@ -86,7 +86,7 @@ public class RPS extends Game{
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Player "+ winner + " won");
+		//system.out.println("Player "+ winner + " won");
 	}
 
 	public int checkGame() {
@@ -114,27 +114,27 @@ public class RPS extends Game{
 	private void CompareCharacters() {
 		if(player1_character == player2_character) {
 			gamesPlayed--;
-			System.out.println("Tied this round");
+			//system.out.println("Tied this round");
 			comp = "Tied this round";
 			return;
 		}//paper == 2 ,scissors == 1, rock == 3
 		else if(player1_character == 3 &  player2_character == 1) {
-			System.out.println("Player 1 wins this round");
+			//system.out.println("Player 1 wins this round");
 			score = score + 1;
 			comp = "Player 1 wins this round";
 		}
 		else if(player1_character == 2 &  player2_character == 3) {
-			System.out.println("Player 1 wins this round");
+			//system.out.println("Player 1 wins this round");
 			score = score + 1;
 			comp = "Player 1 wins this round";
 		}
 		else if(player1_character == 1 &  player2_character == 2) {
-			System.out.println("Player 1 wins this round");
+			//system.out.println("Player 1 wins this round");
 			score = score + 1;
 			comp = "Player 1 wins this round";
 		}
 		else {
-			System.out.println("Player 2 wins this round");
+			//system.out.println("Player 2 wins this round");
 			score = score + 2;
 			comp = "Player 2 wins this round";
 		}
@@ -145,7 +145,7 @@ public class RPS extends Game{
 		if(player.getName() == "Computer") {
 			player1_character = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			previous1 = types[player1_character];
-			System.out.println("Computer played turn. Computer plays "+ player1_character);
+			//system.out.println("Computer played turn. Computer plays "+ player1_character);
 		}
 		else if(num == 2) {
 			chosing = new RPSCharacterScreen("Choose an Item", "\r\n" + "If the same item is chosen, it's a tie." + 
@@ -164,7 +164,7 @@ public class RPS extends Game{
 			}
 			player2_character = chosing.getPlayer();
 			previous2 = types[player2_character];
-			System.out.println("Player 2 has played. They chose "+ player2_character);
+			//system.out.println("Player 2 has played. They chose "+ player2_character);
 			chosing.dispose();
 		}
 	}

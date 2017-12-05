@@ -126,12 +126,12 @@ public class Tile {
 		else {
 			System.out.println(Type + "isn't a valid type number and couldn't be used");
 		}
-		new Timer(5000, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BoardGame.infoMessage.setVisible(false);
-				BoardGame.rollLabel.setVisible(false);
-				((Timer)e.getSource()).stop();
-			}
-		}).start();
+//		new Timer(5000, new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				BoardGame.infoMessage.setVisible(false);
+//				BoardGame.rollLabel.setVisible(false);
+//				((Timer)e.getSource()).stop();
+//			}
+//		}).start();
 	}
 }

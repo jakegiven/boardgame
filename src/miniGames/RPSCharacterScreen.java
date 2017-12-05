@@ -157,20 +157,20 @@ public class RPSCharacterScreen extends IntroGUI {
 		}
 	
 		private void handleScissors() {
-			System.out.println("Scissors was pressed");
+			//system.out.println("Scissors was pressed");
 			setPlayer(1);
 			
 		}
 	
 		private void handlePaper() {
 			// TODO Auto-generated method stub
-			System.out.println("Paper was pressed");
+			//system.out.println("Paper was pressed");
 			setPlayer(2);
 		}
 	
 		private void handleRock() {
 			// TODO Auto-generated method stub
-			System.out.println("Rock was pressed");
+			//system.out.println("Rock was pressed");
 			setPlayer(3);
 		}
 	
